@@ -215,7 +215,10 @@ app.layout = html.Div([
 
         html.Div([
             
-            html.P('A post-COVID business analytics dashboard', className='eight columns'),
+            html.P('A post-COVID business analytics dashboard', className='four columns'),
+            html.A('github repo', href='https://github.com/Quadr0', className='four columns'),
+
+           
 
             dcc.Dropdown(
                 id='pie-chart-selector-dropdown',
