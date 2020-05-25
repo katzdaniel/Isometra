@@ -14,7 +14,5 @@ Daniel Katz, Julia Shephard, Jane Mo, Daniel Wang, and Andrew Zhao
 3. Go to the website and upload your data. 
 
 #### Notes
-
-- By default, the extended sample data will be displayed, but a short versi
 - By default, the extended sample data will be displayed, but a short version can found in the data folder in the github.
 - The app will only work on a large screen. 
