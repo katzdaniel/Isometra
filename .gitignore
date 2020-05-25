@@ -1,0 +1,7 @@
+*/*db
+db_backups/
+
+
+__pycache__/
+.vscode/
+env

@@ -1,0 +1,24 @@
+/* #upload-data-text{
+
+    lineHeight: 60px;
+    borderWidth: 1px,;
+    borderStyle: dashed;
+    borderRadius: 5px;
+} */
+
+/* div {
+    font-size: 40px;
+} */
+
+#header-title #month-dropdown #analysis-header{
+    text-align: center;
+}
+
+#header-desc-text {
+    padding-top: 5px;
+    text-align: center;
+}
+
+#analysis-header {
+    text-align: center;
+}
