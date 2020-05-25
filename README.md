@@ -1,6 +1,7 @@
 # Isometra
 ### A post-COVID analytics dashboard for small businesss
-
+Submitted to MiltonHacksII hackathon, by:
+Daniel Katz, Julia Shephard, Jane Mo, Daniel Wang, and Andrew Zhao
 #### Instructions
 
 
