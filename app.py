@@ -44,37 +44,12 @@ def gen_monthly_revenue_bar_chart(full_df):
 
 def analyze_metric(full_df, keyword, print_word):
     values = full_df[keyword].tolist()
-    #growth_b = (values[13]/values[1] -1) * 100.0
-    #growth_d = (values[17]/values[13] -1) * 100.0
-   # growth_a = (values[-1]/values[17] -1) * 100.0
 
     before_data = abs((values[13]/values[1]-1)*100.0)
     during_data = abs((values[16]/values[13]-1)*100.0)
     after_data = abs((values[-1]/values[16]-1)*100.0)
 
-    # return f"Before COVID, your {print_word} grew by {round(growth_b,2)}%, during COVID, your {print_word} grew by {round(growth_d,2)}%, and after COVID, your {print_word} has grown by {round(growth_a,2)}%."
     return f"Before COVID, your {print_word} {'shrank' if values[13]-values[1] < 0 else 'grew'} by {round(before_data,2)}%, during COVID, your {print_word} {'shrank' if values[17]-values[13] < 0 else 'grew'} by {round(during_data,2)}%, and since COVID, your {print_word} {'shrunk' if values[-1]-values[17] < 0 else 'grew'} by {round(after_data,2)}%"
-     
-    #df = full_df[keyword]
-
-#    before_data = ((df['2020-03-01']-df['2010-01-01'])**(1/15)-1)*100
-#     during_data = ((df['2020-06-01']-df['2010-03-01'])**(1/4)-1)*100
-#     after_data = ((df['2020-07-01']-df['2010-06-01'])**(1/2)-1)*100
-
-
-   # fig = go.Figure(data=[go.Table(header=dict(values=['Before', 'During','After']),
-      #  cells=dict(values=[[before_data+'%'], [during_data+'%'],[after_data+'%']]))
-     #   ])
-  #  return fig
-     
-    
-    #average growth = (endamount/startingamount - 1) * 100
-    
-    #percent growth
-    # iterates through each item in "Net Income"
-    # calculates how much more this was then before (percent-wise)
-    # counter that keeps track of the percent growth and then finds the average
-    # calculates the average growth in income before, during and after covid
     
 def gen_monthly_expenditures_bar_chart(full_df):
     g = px.bar(
@@ -187,8 +162,6 @@ app.layout = html.Div([
         # first row div
         html.Div([
 
-            # html.P('', className='one columns'),
-
             html.H1(DASHBOARD_NAME, className='three columns', id='header-title'),
 
             html.Div(
@@ -216,14 +189,17 @@ app.layout = html.Div([
         html.Div([
             
             html.P('A post-COVID business analytics dashboard', className='four columns'),
-            html.A('github repo', href='https://github.com/Quadr0/Isometra', className='four columns'),
+            html.Div([
+                html.A('instructions and github repo', href='https://github.com/Quadr0/Isometra', className='five columns',),   
+            ]
+            ,style={'textAlign':'center'},),
 
            
 
             dcc.Dropdown(
                 id='pie-chart-selector-dropdown',
                 options=[{'label': date_obj_from_iso_str(i).strftime('%b %Y'), 'value': i} for i in sample_df['Date'].unique()],
-                className='four columns',
+                className='three columns',
                 value='2020-01-01'),
         ], className='row'),
 
