@@ -187,25 +187,34 @@ app.layout = html.Div([
         ], className='row'),
 
         html.Div([
-            
-            html.P('A post-COVID business analytics dashboard', className='four columns'),
             html.Div([
-                html.A('instructions and github repo', href='https://github.com/Quadr0/Isometra', className='five columns',),   
+                html.P(['A post-COVID business analytics dashboard',html.Br(), html.B(html.A('Scroll down',href='#inst')),' for analysis + instructions'], className='four columns'
+            )]),
+
+            html.Div([
+                html.A('github repo', href='https://github.com/Quadr0/Isometra', target='_blank',className='five columns',),   
             ]
             ,style={'textAlign':'center'},),
 
            
 
+            
+        ], className='row'),
+
+        html.Hr(),
+
+        html.Div([
+            html.P('',className='nine columns'),
             dcc.Dropdown(
                 id='pie-chart-selector-dropdown',
                 options=[{'label': date_obj_from_iso_str(i).strftime('%b %Y'), 'value': i} for i in sample_df['Date'].unique()],
                 className='three columns',
                 value='2020-01-01'),
-        ], className='row'),
+
+        ],className='row'),
+
 
         html.Div([
-
-        
             dcc.Graph(figure=gen_net_income_line_chart(sample_df), className='four columns', id='net-income-line-chart'),
             dcc.Graph(figure=gen_monthly_revenue_bar_chart(sample_df), className='four columns', id='monthly-revenue-bar-chart'),
             dcc.Graph(figure=gen_expenses_proportion_pie_chart(sample_df), className='four columns', id='expenses-proportion-pie-chart'),
@@ -223,7 +232,7 @@ app.layout = html.Div([
         html.Div([
 
 
-            html.H5('Analysis', className='twelve columns', id='analysis-header')
+            html.H5(html.B('Analysis'), className='twelve columns', id='analysis-header')
         ], className='row'),
         
         #dropdown to select metric (column) to analyze
@@ -237,10 +246,40 @@ app.layout = html.Div([
                 value='Monthly_Revenue'),
 
 
-            html.Div([analyze_metric(sample_df, keyword = "Monthly_Revenue", print_word = "monthly revenue")],
+            html.Div([dcc.Markdown(analyze_metric(sample_df, keyword = "Monthly_Revenue", print_word = "monthly revenue"))],
                 className="four columns", id='analytics-data-output')
             
         ], className='row'),
+
+        html.Div([
+
+
+            html.H5([html.Br(),html.B('Instructions')], className='twelve columns',id="inst")
+        ], className='row'),
+
+        html.Div([
+
+            html.P(' ',className='three columns'),
+            dcc.Markdown('''
+            1. Make a copy of the [template spreadsheet](https://docs.google.com/spreadsheets/d/1uzKu1u2yzynQhHleORwoupgn7zZMDusAzn7uoAcyAc4/edit?usp=sharing) and fill it in with your own data.
+            2. Download the spreadsheet as a **csv** file and rename it to your business' name. 
+            3. Upload your data above. 
+            That's it! Isometra does not collect any of your data. 
+
+            - Select date in drop-down for pie charts
+            - Select metric in drop-down for numerical analysis
+            - By default, a sample data will be displayed.
+            - The app will only work on a large screen. 
+            ''', className='six columns', style={'textAlign':'center'},id="steps"),
+
+            html.Div('',className='three columns'),
+        ], className='row'),
+        html.Hr(),
+
+        html.Div([
+            html.P(['Submitted to MiltonHacksII hackathon, by: Daniel Katz, Daniel Wang, Julia Shephard, Andrew Zhao, Jane Mo',html.Br(),html.P('🏆 Best Scalable Project')], className='twelve columns',id="cred")
+        ], className='row'),
+
     ])
 ])
 
